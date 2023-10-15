@@ -1,0 +1,7 @@
+<resources>
+    <string name="id">Launches ID: </string>
+    <string name="detail">Detail: </string>
+    <string name="rocket">Rocket ID: </string>
+    <string name="flight_number">Flight Number: </string>
+    <string name="icon">Launch Icon</string>
+</resources>

@@ -24,7 +24,7 @@ class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase): BaseViewModel
         loadLaunches()
     }
 
-    private fun loadLaunches() {
+     fun loadLaunches() {
         fetchData()
     }
 

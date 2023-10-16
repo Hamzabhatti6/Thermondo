@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.hamza.common.AppTheme
 import com.hamza.presentation.ui.composable.LaunchesScreen
+import com.hamza.presentation.ui.navigation.ComposeNavigation
 import com.hamza.presentation.ui.viewmodel.LaunchesViewModel
 import org.koin.android.ext.android.inject
 
@@ -16,6 +17,7 @@ class LaunchesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
+                ComposeNavigation(viewModel)
                 LaunchesScreen(viewModel)
             }
         }

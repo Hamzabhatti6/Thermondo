@@ -19,6 +19,8 @@ coroutines-test = "1.6.4"
 turbine = "0.11.0"
 mockk = "1.12.0"
 kotlin-bom = "1.8.0"
+room-db = "2.4.3"
+runtime-livedata = "1.2.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }

@@ -3,9 +3,9 @@ package com.hamza.presentation.ui
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.compose.rememberNavController
 import com.hamza.common.AppTheme
-import com.hamza.presentation.ui.composable.LaunchesScreen
-import com.hamza.presentation.ui.navigation.ComposeNavigation
+import com.hamza.presentation.ui.navigation.NavGraph
 import com.hamza.presentation.ui.viewmodel.LaunchesViewModel
 import org.koin.android.ext.android.inject
 
@@ -17,8 +17,8 @@ class LaunchesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                ComposeNavigation(viewModel)
-                LaunchesScreen(viewModel)
+                val navController = rememberNavController()
+                NavGraph(navController = navController, viewModel)
             }
         }
     }

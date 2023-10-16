@@ -15,7 +15,6 @@ class LaunchesUseCaseImpl(
         return withContext(coroutineContext) {
             try {
                 val launches = launchesRepository.fetchLaunches()
-
                 LaunchesUseCaseResult.Success(launches.take(50))
             } catch (e: Exception) {
                 LaunchesUseCaseResult.Error(e.cause)

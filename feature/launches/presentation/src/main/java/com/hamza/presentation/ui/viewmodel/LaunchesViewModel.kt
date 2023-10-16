@@ -1,5 +1,6 @@
 package com.hamza.presentation.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import com.hamza.api.usecase.LaunchesUseCase
 import com.hamza.api.usecase.LaunchesUseCaseResult
 import kotlinx.coroutines.launch
@@ -20,6 +21,9 @@ class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase): BaseViewModel
     val launches: StateFlow<LaunchesState> = _launchesState.asStateFlow()
     private val _launchesDetails = MutableStateFlow<LaunchesDetailsUiModel?>(null)
     val launchesDetails: StateFlow<LaunchesDetailsUiModel?> = _launchesDetails.asStateFlow()
+
+   // val savedLaunchesList: LiveData<List<LaunchesTable>> = launchesRepository.allLaunches
+
     init {
         loadLaunches()
     }
@@ -72,6 +76,15 @@ class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase): BaseViewModel
             }
         }
     }
+
+//    fun getAllSavedLaunches() : List<LaunchesTable>{
+//      return  launchesRepository.getAllSavedLaunches()
+//    }
+//
+//    fun addEmployee(launch: LaunchesTable) {
+//        launchesRepository.addLaunches(launch)
+//        getAllSavedLaunches()
+//    }
 }
 
 data class LaunchesState(

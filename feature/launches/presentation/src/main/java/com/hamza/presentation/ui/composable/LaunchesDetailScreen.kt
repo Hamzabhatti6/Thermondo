@@ -13,14 +13,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.hamza.presentation.R
 import com.hamza.presentation.ui.data.LaunchesDetailsUiModel
+import com.hamza.presentation.ui.utils.MyAppBar
 
 @Composable
-fun LaunchesDetailScreen(detail: LaunchesDetailsUiModel) {
+fun LaunchesDetailScreen(navController: NavController,
+                         detail: LaunchesDetailsUiModel) {
 
     Scaffold(
+//        topBar = {
+//            MyAppBar(
+//                navController = navController, onBackPressed = {
+//                    navController.navigateUp()
+//                })
+//        },
         content = { paddingValue ->
             Column(
                 modifier = Modifier

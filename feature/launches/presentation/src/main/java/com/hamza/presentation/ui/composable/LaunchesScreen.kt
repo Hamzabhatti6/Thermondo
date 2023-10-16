@@ -1,6 +1,5 @@
 package com.hamza.presentation.ui.composable
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -9,21 +8,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import coil.compose.AsyncImage
-import com.hamza.presentation.R
+import androidx.navigation.NavHostController
 import com.hamza.presentation.ui.data.LaunchesUiModel
 import com.hamza.presentation.ui.viewmodel.LaunchesViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LaunchesScreen(viewModel: LaunchesViewModel) {
+fun LaunchesScreen(navController: NavHostController, viewModel: LaunchesViewModel
+) {
 
     val launchesState by viewModel.launches.collectAsState()
 
@@ -77,16 +69,14 @@ fun LaunchesScreen(viewModel: LaunchesViewModel) {
             }
 
         }
-        val scaffoldState = rememberBottomSheetScaffoldState()
 
         val detail by viewModel.launchesDetails.collectAsState()
         if (detail != null) {
             LaunchesDetailScreen(
+                navController,
                 detail = detail!!
             )
-            LaunchedEffect(key1 = null) {
-                scaffoldState.bottomSheetState.expand()
-            }
+
         }
     }
     )
@@ -104,38 +94,3 @@ fun LaunchesList(launches: List<LaunchesUiModel>,  onItemClick: (id: String) -> 
     }
 }
 
-@Composable
-fun LaunchesCard(launch: LaunchesUiModel, onItemClick: (id: String) -> Unit) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 8.dp, end = 8.dp)
-            .clickable {
-                onItemClick(launch.id)
-            }
-
-    ) {
-        Column(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-        ) {
-            Text(
-                text = launch.id,
-                fontSize = 12.sp,
-                maxLines = 1,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .padding(8.dp)
-            )
-        }
-
-        AsyncImage(
-            model = launch.smallLink,
-            contentDescription = stringResource(R.string.icon),
-            modifier = Modifier
-                .padding(bottom = 8.dp)
-                .align(Alignment.CenterHorizontally)
-        )
-    }
-
-}

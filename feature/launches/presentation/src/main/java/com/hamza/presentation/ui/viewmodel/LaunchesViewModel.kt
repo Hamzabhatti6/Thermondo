@@ -1,6 +1,5 @@
 package com.hamza.presentation.ui.viewmodel
 
-import androidx.lifecycle.LiveData
 import com.hamza.api.usecase.LaunchesUseCase
 import com.hamza.api.usecase.LaunchesUseCaseResult
 import kotlinx.coroutines.launch
@@ -9,13 +8,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import androidx.lifecycle.viewModelScope
-import com.hamza.api.Launches
+import com.hamza.api.usecase.MarkFavoritesUseCase
 import com.hamza.common.BaseViewModel
-import com.hamza.local.dao.LaunchDao
 import com.hamza.presentation.ui.data.*
 
-class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase
-): BaseViewModel() {
+class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase,
+                         val markFavoritesUseCaseImpl: MarkFavoritesUseCase,
+                         ): BaseViewModel() {
 
    //  private val launchDao: LaunchDao
     private val _launchesState = MutableStateFlow(LaunchesState())
@@ -77,14 +76,21 @@ class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase
             }
         }
     }
-
-//    fun getAllSavedLaunches() : List<LaunchesTable>{
-//      return  launchesRepository.getAllSavedLaunches()
-//    }
-//
-//   suspend fun addLaunch(launch: Launches) {
-//        launchDao.insertItem(launch.toLaunchesEto())
-//    }
+    fun markFavourite(id: String) {
+        viewModelScope.launch {
+            when (val list = getLaunchesUseCase()) {
+                is LaunchesUseCaseResult.Success -> {
+                    val launches = list.launches.firstOrNull { it.id == id }
+                    launches?.let {
+                       markFavoritesUseCaseImpl.invoke(it)
+                    }
+                }
+                else -> {
+                    //do nothing
+                }
+            }
+        }
+    }
 }
 
 data class LaunchesState(

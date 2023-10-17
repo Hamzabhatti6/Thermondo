@@ -3,7 +3,6 @@ package com.hamza.presentation.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.compose.rememberNavController
 import com.hamza.common.AppTheme
 import com.hamza.presentation.ui.navigation.NavGraph

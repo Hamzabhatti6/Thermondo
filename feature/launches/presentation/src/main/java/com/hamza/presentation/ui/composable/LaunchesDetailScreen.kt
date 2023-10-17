@@ -1,16 +1,17 @@
 package com.hamza.presentation.ui.composable
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -43,10 +44,17 @@ fun LaunchesDetailScreen(
             Column(
                 modifier = Modifier
                     .padding(paddingValue)
+                    .verticalScroll(rememberScrollState())
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                launch?.let {LaunchesDetail(launch = it)  }
+                launch?.let { launch ->
+                    LaunchesDetail(launch = launch)
+                    FavoriteButton(onClick = {
+                        viewModel.markFavourite(launch.id)
+                    } )
+                }
+
             }
         }
     )
@@ -55,7 +63,15 @@ fun LaunchesDetailScreen(
 @Composable
 fun LaunchesDetail(launch: LaunchesDetailsUiModel) {
     Column {
-        Row {
+        AsyncImage(
+            model = launch.largeLink,
+            contentDescription = stringResource(R.string.icon),
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+        Row (modifier = Modifier
+            .padding(top = 50.dp)){
 
             Text(
                 text = stringResource(R.string.id),
@@ -126,14 +142,30 @@ fun LaunchesDetail(launch: LaunchesDetailsUiModel) {
 
             )
         }
+    }
 
-        AsyncImage(
-            model = launch.largeLink,
-            contentDescription = stringResource(R.string.icon),
-            modifier = Modifier
-                .padding(top = 50.dp)
-                .align(Alignment.CenterHorizontally)
-        )
+}
+
+@Composable
+fun FavoriteButton(onClick : () -> Unit){
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        Button(onClick = {
+            onClick()
+        },
+            modifier = Modifier.padding(20.dp),
+            enabled = true,
+
+            border = BorderStroke(width = 1.dp, brush = SolidColor(Color.Blue)),
+            shape = MaterialTheme.shapes.medium,
+            ) {
+            Text(text = stringResource(id = R.string.mark_favorite), color = Color.White)
+        }
+     
     }
 }
 

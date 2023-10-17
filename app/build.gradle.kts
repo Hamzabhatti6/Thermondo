@@ -59,6 +59,7 @@ dependencies {
     implementation(project(":domain:network"))
     implementation(project(":feature:launches:domain"))
     implementation(project(":feature:launches:presentation"))
+    implementation(project(":domain:local"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

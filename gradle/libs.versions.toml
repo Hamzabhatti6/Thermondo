@@ -22,6 +22,8 @@ kotlin-bom = "1.8.0"
 runtime-livedata = "1.2.1"
 room = "2.5.2"
 work-runtime-ktx = "2.8.1"
+coil = "2.4.0"
+navigation = "2.4.2"
 
 
 [libraries]
@@ -44,6 +46,8 @@ coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin-bom" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room"}
 room-common = { group = "androidx.room", name = "room-common", version.ref = "room"}
 room-annotation-processor = { group = "androidx.room", name = "room-compiler", version.ref = "room"}

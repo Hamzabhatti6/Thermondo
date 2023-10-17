@@ -10,4 +10,7 @@ class LaunchesDbRepoImpl(
     override suspend fun fetchLaunches(): List<LaunchEto> {
         return localDb.getAll()
     }
+    override suspend fun addFavourite(item: LaunchEto) {
+        localDb.insertItem(item)
+    }
 }

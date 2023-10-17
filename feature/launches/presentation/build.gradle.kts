@@ -57,8 +57,8 @@ dependencies {
     implementation(project(":feature:launches:api"))
 
     implementation(libs.androidx.material3)
-    implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation("androidx.navigation:navigation-compose:2.4.2")
+    implementation(libs.coil.compose)
+    implementation(libs.navigation.compose)
     implementation(project(mapOf("path" to ":feature:launches:domain")))
     implementation(project(mapOf("path" to ":domain:local")))
 

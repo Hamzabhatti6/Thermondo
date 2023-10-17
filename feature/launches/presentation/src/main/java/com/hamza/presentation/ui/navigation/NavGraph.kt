@@ -9,7 +9,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.hamza.presentation.ui.composable.LaunchesDetailScreen
 import com.hamza.presentation.ui.composable.LaunchesScreen
-import com.hamza.presentation.ui.data.LaunchesDetailsUiModel
 import com.hamza.presentation.ui.viewmodel.LaunchesViewModel
 
 @Composable

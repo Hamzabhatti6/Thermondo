@@ -2,12 +2,13 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    kotlin("kapt")
+
 }
 
-
 android {
+    namespace = "com.hamza.local"
     compileSdk = 31
-    namespace = "com.hamza.launches.domain"
 
     defaultConfig {
         minSdk = 24
@@ -24,18 +25,11 @@ android {
     }
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
-}
-
 dependencies {
-    implementation(project(":feature:launches:api"))
-    implementation(project(":domain:network"))
-    implementation(project(":domain:local"))
-    implementation(libs.koin.core)
-    implementation(libs.coroutines)
+    implementation(libs.room)
+    implementation(libs.androidx.lifecycle.livedata.core.ktx)
+    kapt(libs.room.annotation.processor)
+    implementation(libs.room.ktx)
 
-    testImplementation(libs.junit)
-    testImplementation(libs.mockk)
+    implementation(libs.koin.core)
 }

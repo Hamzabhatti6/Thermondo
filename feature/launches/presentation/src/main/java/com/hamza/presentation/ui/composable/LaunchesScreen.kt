@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.hamza.presentation.ui.data.LaunchesUiModel
+import com.hamza.presentation.ui.navigation.Screens
 import com.hamza.presentation.ui.viewmodel.LaunchesViewModel
 
 @Composable
@@ -63,19 +64,10 @@ fun LaunchesScreen(navController: NavHostController, viewModel: LaunchesViewMode
                 }
                 else {
                     LaunchesList(launches = launchesState.launches, onItemClick = {
-                        viewModel.fetchDetails(it)
+                        navController.navigate(Screens.LaunchesDetail.withArgs(it))
                     })
                 }
             }
-
-        }
-
-        val detail by viewModel.launchesDetails.collectAsState()
-        if (detail != null) {
-            LaunchesDetailScreen(
-                navController,
-                detail = detail!!
-            )
 
         }
     }

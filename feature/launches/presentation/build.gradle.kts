@@ -60,6 +60,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("androidx.navigation:navigation-compose:2.4.2")
     implementation(project(mapOf("path" to ":feature:launches:domain")))
+    implementation(project(mapOf("path" to ":domain:local")))
 
 
     testImplementation(libs.junit)

@@ -19,8 +19,10 @@ coroutines-test = "1.6.4"
 turbine = "0.11.0"
 mockk = "1.12.0"
 kotlin-bom = "1.8.0"
-room-db = "2.4.3"
 runtime-livedata = "1.2.1"
+room = "2.5.2"
+work-runtime-ktx = "2.8.1"
+
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -42,10 +44,17 @@ coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin-bom" }
+room = { group = "androidx.room", name = "room-runtime", version.ref = "room"}
+room-common = { group = "androidx.room", name = "room-common", version.ref = "room"}
+room-annotation-processor = { group = "androidx.room", name = "room-compiler", version.ref = "room"}
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room"}
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-runtime-ktx" }
+androidx-lifecycle-livedata-core-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-core-ktx", version = "2.6.2" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+
 

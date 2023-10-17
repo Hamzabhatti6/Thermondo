@@ -13,31 +13,37 @@ import com.hamza.presentation.ui.data.LaunchesDetailsUiModel
 import com.hamza.presentation.ui.viewmodel.LaunchesViewModel
 
 @Composable
-fun NavGraph (navController: NavHostController = rememberNavController(), viewModel: LaunchesViewModel) {
+fun NavGraph(
+    navController: NavHostController = rememberNavController(),
+    viewModel: LaunchesViewModel
+) {
     NavHost(
-    navController = navController,
-    startDestination = Screens.Home.route
+        navController = navController,
+        startDestination = Screens.Home.route
     )
     {
         composable(route = Screens.Home.route) {
             LaunchesScreen(navController, viewModel)
         }
         composable(
-            route = Screens.LaunchesDetail.route + "/{model}",
+            route = Screens.LaunchesDetail.route + "/{id}",
             arguments = listOf(
-                navArgument("model") {
-                    type = NavType.IntType
-                    defaultValue = 0
+                navArgument("id") {
+                    type = NavType.StringType
+                    defaultValue = ""
                     nullable = false
                 }
             )
         ) { entry ->
             /* Extracting the id from the route */
-            val model = entry.arguments?.get("model")
-            LaunchesDetailScreen(
-                navController = navController,
-                model as LaunchesDetailsUiModel
-            )
+            val id = entry.arguments?.getString("id")
+            id?.let {
+                LaunchesDetailScreen(
+                    navController = navController,
+                    viewModel,
+                    id
+                )
+            }
         }
     }
 }

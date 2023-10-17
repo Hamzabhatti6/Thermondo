@@ -3,6 +3,7 @@ package com.hamza.domain.extention
 import com.hamza.api.Launches
 import com.hamza.api.Links
 import com.hamza.api.Patch
+import com.hamza.local.entities.LaunchEto
 import com.hamza.network.model.LaunchesDto
 import com.hamza.network.model.LinksDto
 import com.hamza.network.model.PatchDto
@@ -31,5 +32,15 @@ fun PatchDto.toPatch() : Patch {
 }
 fun List<LaunchesDto>.toLaunches() : List<Launches> {
     return this.map { it.toLaunches() }
+}
+
+fun Launches.toLaunchEto() :  LaunchEto{
+    return LaunchEto(
+        id = this.id!!,
+        details = this.details!!,
+        rocket = this.rocket!!,
+        flight_number = this.flight_number!!,
+        large_link = this.links!!.patch.large!!
+    )
 }
 

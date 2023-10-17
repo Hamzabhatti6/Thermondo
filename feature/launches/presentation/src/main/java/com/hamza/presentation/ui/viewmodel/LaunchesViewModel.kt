@@ -9,14 +9,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import androidx.lifecycle.viewModelScope
+import com.hamza.api.Launches
 import com.hamza.common.BaseViewModel
-import com.hamza.presentation.ui.data.LaunchesDetailsUiModel
-import com.hamza.presentation.ui.data.LaunchesUiModel
-import com.hamza.presentation.ui.data.toLaunchesDetailsModel
-import com.hamza.presentation.ui.data.toListLaunchesUiModel
+import com.hamza.local.dao.LaunchDao
+import com.hamza.presentation.ui.data.*
 
-class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase): BaseViewModel() {
+class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase
+): BaseViewModel() {
 
+   //  private val launchDao: LaunchDao
     private val _launchesState = MutableStateFlow(LaunchesState())
     val launches: StateFlow<LaunchesState> = _launchesState.asStateFlow()
     private val _launchesDetails = MutableStateFlow<LaunchesDetailsUiModel?>(null)
@@ -81,9 +82,8 @@ class LaunchesViewModel (val getLaunchesUseCase: LaunchesUseCase): BaseViewModel
 //      return  launchesRepository.getAllSavedLaunches()
 //    }
 //
-//    fun addEmployee(launch: LaunchesTable) {
-//        launchesRepository.addLaunches(launch)
-//        getAllSavedLaunches()
+//   suspend fun addLaunch(launch: Launches) {
+//        launchDao.insertItem(launch.toLaunchesEto())
 //    }
 }
 
